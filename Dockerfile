@@ -14,9 +14,9 @@ RUN \
     && apk del .build-deps \
     && apk add --no-cache supervisor
 
-COPY supervisord.conf /etc/supervisord.conf
+ENV KCP_PORT=9443 KCP_MODE=fast MTU=1400 SNDWND=1024 RCVWND=1024 CRYPT=none key=alkdfjhoier
 
-ENV KCP_PORT=9443 KCP_MODE=fast MTU=1400 SNDWND=1024 RCVWND=1024
+COPY supervisord.conf /etc/supervisord.conf
 
 EXPOSE $KCP_PORT/udp
 
